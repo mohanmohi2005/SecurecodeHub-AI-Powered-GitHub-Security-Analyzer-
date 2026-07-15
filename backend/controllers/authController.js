@@ -74,3 +74,18 @@ export const loginUser = async (req, res) => {
     return res.status(500).json({ message: 'Server error during login.' });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json({ message: 'Account deleted successfully' });
+  } catch (error) {
+    console.error('Delete User Error:', error);
+    return res.status(500).json({ message: 'Server error during account deletion.' });
+  }
+};
+

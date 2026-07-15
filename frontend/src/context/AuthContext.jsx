@@ -53,12 +53,24 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('securecodehub_user');
   };
 
+  const deleteAccount = async (userId) => {
+    try {
+      await axios.delete(`${API_URL}/delete-account/${userId}`);
+      logout();
+      return { success: true };
+    } catch (error) {
+      const errorMsg = error.response?.data?.message || 'Failed to delete account.';
+      return { success: false, error: errorMsg };
+    }
+  };
+
   const value = {
     user,
     loading,
     login,
     register,
-    logout
+    logout,
+    deleteAccount
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

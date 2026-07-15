@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import MainLayout from '../components/MainLayout';
 import { Settings as SettingsIcon, Bell, Shield, CheckCircle2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('notifications');
@@ -9,11 +11,25 @@ const Settings = () => {
     criticalAlerts: true
   });
   const [saved, setSaved] = useState(false);
+  const { user, deleteAccount } = useAuth();
+  const navigate = useNavigate();
 
   const handleToggle = (key) => {
     setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+    if (window.confirm('Are you absolutely sure you want to permanently delete your account? This action cannot be undone.')) {
+      const res = await deleteAccount(user._id);
+      if (res.success) {
+        navigate('/login');
+      } else {
+        alert(res.error);
+      }
+    }
   };
 
   return (
@@ -92,7 +108,10 @@ const Settings = () => {
                 <span>Danger Zone</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-4">Permanently delete your account and all scan history.</p>
-              <button className="px-4 py-2 bg-red-600/20 text-red-500 hover:bg-red-600 hover:text-white text-sm font-semibold rounded-lg transition-colors border border-red-900/50">
+              <button 
+                onClick={handleDeleteAccount}
+                className="px-4 py-2 bg-red-600/20 text-red-500 hover:bg-red-600 hover:text-white text-sm font-semibold rounded-lg transition-colors border border-red-900/50"
+              >
                 Delete Account
               </button>
             </div>
