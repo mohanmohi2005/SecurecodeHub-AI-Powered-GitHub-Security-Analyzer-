@@ -36,25 +36,25 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-dark-bg px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 glass p-8 rounded-2xl shadow-xl shadow-black/50 border border-zinc-800">
+    <div className="flex min-h-screen items-center justify-center bg-light-bg dark:bg-dark-bg px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8 glass p-8 rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/50 border border-slate-200 dark:border-zinc-800">
         
         {/* Header */}
         <div className="text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600">
             <ShieldCheck className="h-6 w-6 text-white" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-white">
-            Secure CodeHub
+          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            securecodehub+
           </h2>
-          <p className="mt-2 text-sm text-zinc-400">
+          <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
             AI-Powered GitHub Security Analyzer
           </p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="flex items-center space-x-2 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-sm text-red-400">
+          <div className="flex items-center space-x-2 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-sm text-red-500 dark:text-red-400">
             <AlertCircle className="h-5 w-5 flex-shrink-0" />
             <span>{error}</span>
           </div>
@@ -67,7 +67,7 @@ const Login = () => {
               <label htmlFor="email-address" className="sr-only">Email address</label>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Mail className="h-5 w-5 text-zinc-500" />
+                  <Mail className="h-5 w-5 text-slate-400 dark:text-zinc-500" />
                 </div>
                 <input
                   id="email-address"
@@ -77,7 +77,7 @@ const Login = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-lg border border-zinc-700 bg-zinc-900/50 py-3 pl-10 pr-3 text-white placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
+                  className="block w-full rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900/50 py-3 pl-10 pr-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
                   placeholder="Email address"
                 />
               </div>
@@ -87,7 +87,7 @@ const Login = () => {
               <label htmlFor="password" className="sr-only">Password</label>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Key className="h-5 w-5 text-zinc-500" />
+                  <Key className="h-5 w-5 text-slate-400 dark:text-zinc-500" />
                 </div>
                 <input
                   id="password"
@@ -97,7 +97,7 @@ const Login = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-lg border border-zinc-700 bg-zinc-900/50 py-3 pl-10 pr-3 text-white placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
+                  className="block w-full rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900/50 py-3 pl-10 pr-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
                   placeholder="Password"
                 />
               </div>
@@ -108,7 +108,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative flex w-full justify-center rounded-lg bg-indigo-600 py-3 px-4 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative flex w-full justify-center rounded-lg bg-indigo-600 py-3 px-4 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -120,9 +120,9 @@ const Login = () => {
         </form>
 
         {/* Footer */}
-        <div className="text-center text-sm text-zinc-400 mt-4">
+        <div className="text-center text-sm text-slate-500 dark:text-zinc-400 mt-4">
           Don't have an account?{' '}
-          <Link to="/register" className="font-medium text-indigo-400 hover:text-indigo-300">
+          <Link to="/register" className="font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-400 dark:hover:text-indigo-300">
             Sign up now
           </Link>
         </div>

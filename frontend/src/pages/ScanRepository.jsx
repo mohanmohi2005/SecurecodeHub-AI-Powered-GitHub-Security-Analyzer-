@@ -116,21 +116,21 @@ const ScanRepository = () => {
         
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Scan a Repository</h1>
-          <p className="mt-2 text-sm text-zinc-400">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Scan a Repository</h1>
+          <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
             Select a repository from your GitHub account or manually enter a public URL to begin the AI security analysis.
           </p>
         </div>
 
         {/* Scan Card */}
-        <div className="rounded-xl border border-dark-border bg-dark-card overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-light-border dark:border-dark-border bg-light-card dark:bg-dark-card overflow-hidden shadow-sm">
           
           {/* Tabs */}
-          <div className="flex border-b border-dark-border bg-zinc-900/30">
+          <div className="flex border-b border-light-border dark:border-dark-border bg-slate-50 dark:bg-zinc-900/30">
             <button 
               onClick={() => setActiveTab('github')}
               className={`flex-1 py-4 text-sm font-semibold flex items-center justify-center space-x-2 transition-colors ${
-                activeTab === 'github' ? 'border-b-2 border-indigo-500 text-indigo-400' : 'text-zinc-400 hover:text-white'
+                activeTab === 'github' ? 'border-b-2 border-indigo-500 text-indigo-500 dark:text-indigo-400' : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Github className="h-4 w-4" />
@@ -139,7 +139,7 @@ const ScanRepository = () => {
             <button 
               onClick={() => setActiveTab('manual')}
               className={`flex-1 py-4 text-sm font-semibold flex items-center justify-center space-x-2 transition-colors ${
-                activeTab === 'manual' ? 'border-b-2 border-indigo-500 text-indigo-400' : 'text-zinc-400 hover:text-white'
+                activeTab === 'manual' ? 'border-b-2 border-indigo-500 text-indigo-500 dark:text-indigo-400' : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <LinkIcon className="h-4 w-4" />
@@ -151,12 +151,12 @@ const ScanRepository = () => {
             {activeTab === 'manual' && (
               <form onSubmit={handleManualSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="repo-url" className="block text-sm font-semibold text-zinc-300 mb-2">
+                  <label htmlFor="repo-url" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-2">
                     Public Git Repository URL
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <LinkIcon className="h-5 w-5 text-zinc-500" />
+                      <LinkIcon className="h-5 w-5 text-slate-400 dark:text-zinc-500" />
                     </div>
                     <input
                       id="repo-url"
@@ -165,18 +165,18 @@ const ScanRepository = () => {
                       placeholder="https://github.com/username/repository"
                       value={repoUrl}
                       onChange={(e) => setRepoUrl(e.target.value)}
-                      className="block w-full rounded-lg border border-zinc-700 bg-zinc-900/50 py-3 pl-10 pr-3 text-white placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
+                      className="block w-full rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900/50 py-3 pl-10 pr-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="branch" className="block text-sm font-semibold text-zinc-300 mb-2">
+                  <label htmlFor="branch" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-2">
                     Branch (Optional)
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <GitBranch className="h-5 w-5 text-zinc-500" />
+                      <GitBranch className="h-5 w-5 text-slate-400 dark:text-zinc-500" />
                     </div>
                     <input
                       id="branch"
@@ -184,7 +184,7 @@ const ScanRepository = () => {
                       placeholder="main"
                       value={branch}
                       onChange={(e) => setBranch(e.target.value)}
-                      className="block w-full rounded-lg border border-zinc-700 bg-zinc-900/50 py-3 pl-10 pr-3 text-white placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
+                      className="block w-full rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900/50 py-3 pl-10 pr-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all"
                     />
                   </div>
                 </div>
@@ -193,7 +193,7 @@ const ScanRepository = () => {
                   <button
                     type="submit"
                     disabled={scanning}
-                    className="flex w-full justify-center items-center space-x-2 rounded-lg bg-indigo-600 py-3 px-4 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex w-full justify-center items-center space-x-2 rounded-lg bg-indigo-600 py-3 px-4 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {scanning ? (
                       <>
@@ -214,16 +214,16 @@ const ScanRepository = () => {
             {activeTab === 'github' && (
               <div>
                 {!isGithubConnected ? (
-                  <div className="text-center py-12 border-2 border-dashed border-dark-border rounded-xl">
-                    <Github className="h-12 w-12 text-zinc-500 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">Connect your GitHub Account</h3>
-                    <p className="text-zinc-400 text-sm mb-6 max-w-md mx-auto">
+                  <div className="text-center py-12 border-2 border-dashed border-light-border dark:border-dark-border rounded-xl">
+                    <Github className="h-12 w-12 text-slate-400 dark:text-zinc-500 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Connect your GitHub Account</h3>
+                    <p className="text-slate-500 dark:text-zinc-400 text-sm mb-6 max-w-md mx-auto">
                       Connect SecureCodeHub to your GitHub account to easily select and scan your repositories without copying URLs.
                     </p>
                     <button 
                       type="button"
                       onClick={handleConnectGithub}
-                      className="inline-flex items-center space-x-2 bg-white text-black font-semibold py-2 px-6 rounded-lg hover:bg-zinc-200 transition-colors"
+                      className="inline-flex items-center space-x-2 bg-slate-900 dark:bg-white text-white dark:text-black font-semibold py-2 px-6 rounded-lg hover:bg-slate-700 dark:hover:bg-zinc-200 transition-colors"
                     >
                       <Github className="h-4 w-4" />
                       <span>Authorize GitHub</span>
@@ -232,10 +232,10 @@ const ScanRepository = () => {
                 ) : (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between mb-4">
-                      <p className="text-sm text-zinc-400">
-                        Connected as <span className="font-semibold text-indigo-400">@{githubUsername}</span>
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">
+                        Connected as <span className="font-semibold text-indigo-500 dark:text-indigo-400">@{githubUsername}</span>
                       </p>
-                      <button onClick={fetchRepos} className="text-xs text-indigo-400 hover:text-indigo-300">
+                      <button onClick={fetchRepos} className="text-xs text-indigo-500 dark:text-indigo-400 hover:text-indigo-400 dark:hover:text-indigo-300">
                         Refresh List
                       </button>
                     </div>
@@ -243,7 +243,7 @@ const ScanRepository = () => {
                     {loadingRepos ? (
                       <div className="flex flex-col justify-center items-center py-12 space-y-3">
                         <Loader2 className="h-8 w-8 text-indigo-500 animate-spin" />
-                        <span className="text-sm text-zinc-400">Fetching your repositories...</span>
+                        <span className="text-sm text-slate-500 dark:text-zinc-400">Fetching your repositories...</span>
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
@@ -251,12 +251,12 @@ const ScanRepository = () => {
                           <div 
                             key={repo.id}
                             onClick={() => !scanning && handleRepoSelect(repo)}
-                            className={`border border-dark-border rounded-lg p-4 bg-zinc-900/30 hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-colors group ${scanning ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                            className={`border border-light-border dark:border-dark-border rounded-lg p-4 bg-slate-50 dark:bg-zinc-900/30 hover:border-indigo-500/50 hover:bg-indigo-50 dark:hover:bg-indigo-500/5 transition-colors group ${scanning ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                           >
                             <div className="flex items-start justify-between">
                               <div className="flex items-center space-x-2">
-                                <BookMarked className="h-4 w-4 text-zinc-500 group-hover:text-indigo-400" />
-                                <h4 className="font-semibold text-white truncate max-w-[200px]" title={repo.full_name}>
+                                <BookMarked className="h-4 w-4 text-slate-400 dark:text-zinc-500 group-hover:text-indigo-500 dark:group-hover:text-indigo-400" />
+                                <h4 className="font-semibold text-slate-900 dark:text-white truncate max-w-[200px]" title={repo.full_name}>
                                   {repo.name}
                                 </h4>
                               </div>
@@ -266,7 +266,7 @@ const ScanRepository = () => {
                                 <Globe className="h-3 w-3 text-emerald-500" title="Public" />
                               )}
                             </div>
-                            <div className="mt-3 flex items-center space-x-4 text-xs text-zinc-500">
+                            <div className="mt-3 flex items-center space-x-4 text-xs text-slate-500 dark:text-zinc-500">
                               {repo.language && (
                                 <span className="flex items-center space-x-1">
                                   <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
@@ -279,7 +279,7 @@ const ScanRepository = () => {
                         ))}
                         
                         {githubRepos.length === 0 && !loadingRepos && (
-                          <div className="col-span-2 text-center py-8 text-zinc-500">
+                          <div className="col-span-2 text-center py-8 text-slate-400 dark:text-zinc-500">
                             No repositories found on this account.
                           </div>
                         )}
@@ -287,10 +287,10 @@ const ScanRepository = () => {
                     )}
                     
                     {scanning && (
-                      <div className="absolute inset-0 bg-dark-bg/80 backdrop-blur-sm flex flex-col items-center justify-center z-10 rounded-xl">
+                      <div className="absolute inset-0 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-sm flex flex-col items-center justify-center z-10 rounded-xl">
                         <Loader2 className="h-10 w-10 text-indigo-500 animate-spin mb-4" />
-                        <h3 className="text-xl font-bold text-white">Analyzing Repository...</h3>
-                        <p className="text-sm text-zinc-400 mt-2">This may take a few moments</p>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">Analyzing Repository...</h3>
+                        <p className="text-sm text-slate-500 dark:text-zinc-400 mt-2">This may take a few moments</p>
                       </div>
                     )}
                   </div>

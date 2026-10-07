@@ -8,29 +8,70 @@
   height: 8px;
 }
 
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track,
+:root.dark ::-webkit-scrollbar-track {
   background: #18181b; /* Zinc 900 */
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Slate 100 */
+}
+
+.dark ::-webkit-scrollbar-thumb,
+:root.dark ::-webkit-scrollbar-thumb {
   background: #3f3f46; /* Zinc 700 */
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb {
+  background: #94a3b8; /* Slate 400 */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+:root.dark ::-webkit-scrollbar-thumb:hover {
   background: #52525b; /* Zinc 600 */
 }
 
-/* Glassmorphism utility */
-.glass {
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b; /* Slate 500 */
+}
+
+/* Glassmorphism utility — dark */
+.dark .glass {
   background: rgba(24, 24, 27, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Glassmorphism utility — light */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 /* Focus outline helpers */
 input:focus, select:focus, textarea:focus {
   outline: 2px solid cubic-bezier(0.4, 0, 0.2, 1);
   outline-color: #6366f1; /* Indigo 500 */
+}
+
+/* Smooth theme transition */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Exclude elements that have their own transition definitions */
+[class*="animate-"],
+.transition-all,
+.transition-colors,
+.transition-transform {
+  transition-duration: inherit;
 }

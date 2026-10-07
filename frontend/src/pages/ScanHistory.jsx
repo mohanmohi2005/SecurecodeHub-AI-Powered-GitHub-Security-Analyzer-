@@ -63,11 +63,11 @@ const ScanHistory = () => {
         
         {/* Title */}
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white flex items-center space-x-3">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center space-x-3">
             <History className="h-8 w-8 text-indigo-500" />
             <span>Scan History</span>
           </h1>
-          <p className="mt-2 text-sm text-zinc-400">
+          <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
             View status and reports of past scans, delete history, or initiate rescans.
           </p>
         </div>
@@ -75,20 +75,20 @@ const ScanHistory = () => {
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-[300px] space-y-4">
             <Loader2 className="h-10 w-10 animate-spin text-indigo-500" />
-            <p className="text-zinc-400 text-sm">Loading scan history...</p>
+            <p className="text-slate-400 dark:text-zinc-400 text-sm">Loading scan history...</p>
           </div>
         ) : (
           /* Table/List of scan logs */
-          <div className="rounded-xl border border-dark-border bg-dark-card overflow-hidden">
+          <div className="rounded-xl border border-light-border dark:border-dark-border bg-light-card dark:bg-dark-card overflow-hidden">
             <div className="overflow-x-auto">
               {historyList.length === 0 ? (
                 <div className="p-12 text-center space-y-4">
-                  <div className="inline-flex items-center justify-center p-3 rounded-full bg-zinc-800 text-zinc-500">
+                  <div className="inline-flex items-center justify-center p-3 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500">
                     <History className="h-8 w-8" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="font-semibold text-white">No Scan History</h4>
-                    <p className="text-xs text-zinc-400">You haven't scanned any repositories yet.</p>
+                    <h4 className="font-semibold text-slate-900 dark:text-white">No Scan History</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400">You haven't scanned any repositories yet.</p>
                   </div>
                   <Link 
                     to="/scan" 
@@ -100,7 +100,7 @@ const ScanHistory = () => {
               ) : (
                 <table className="w-full text-left border-collapse text-sm">
                   <thead>
-                    <tr className="border-b border-dark-border bg-zinc-900/50 text-zinc-400 font-semibold">
+                    <tr className="border-b border-light-border dark:border-dark-border bg-slate-50 dark:bg-zinc-900/50 text-slate-500 dark:text-zinc-400 font-semibold">
                       <th className="p-4">Repository</th>
                       <th className="p-4">Date</th>
                       <th className="p-4">Status</th>
@@ -109,54 +109,54 @@ const ScanHistory = () => {
                       <th className="p-4 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-dark-border">
+                  <tbody className="divide-y divide-light-border dark:divide-dark-border">
                     {historyList.map((log) => (
-                      <tr key={log._id} className="hover:bg-zinc-800/30 transition-colors">
+                      <tr key={log._id} className="hover:bg-slate-50 dark:hover:bg-zinc-800/30 transition-colors">
                         <td className="p-4">
                           <div>
-                            <div className="font-semibold text-white">
+                            <div className="font-semibold text-slate-900 dark:text-white">
                               {log.repositoryId?.repositoryName || 'Deleted Repository'}
                             </div>
-                            <div className="text-xs text-zinc-500 font-mono mt-0.5 max-w-xs truncate">
+                            <div className="text-xs text-slate-400 dark:text-zinc-500 font-mono mt-0.5 max-w-xs truncate">
                               {log.repositoryId?.repositoryUrl || ''}
                             </div>
                           </div>
                         </td>
-                        <td className="p-4 text-zinc-400">
+                        <td className="p-4 text-slate-500 dark:text-zinc-400">
                           {formatDate(log.scanDate)}
                         </td>
                         <td className="p-4">
                           {log.status === 'complete' && (
-                            <span className="inline-flex items-center space-x-1 text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded text-xs border border-emerald-500/20">
+                            <span className="inline-flex items-center space-x-1 text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded text-xs border border-emerald-500/20">
                               <CheckCircle className="h-3 w-3" />
                               <span>Success</span>
                             </span>
                           )}
                           {log.status === 'failed' && (
-                            <span className="inline-flex items-center space-x-1 text-red-400 bg-red-500/10 px-2 py-0.5 rounded text-xs border border-red-500/20">
+                            <span className="inline-flex items-center space-x-1 text-red-500 dark:text-red-400 bg-red-500/10 px-2 py-0.5 rounded text-xs border border-red-500/20">
                               <AlertTriangle className="h-3 w-3" />
                               <span>Failed</span>
                             </span>
                           )}
                           {log.status === 'running' && (
-                            <span className="inline-flex items-center space-x-1 text-yellow-400 bg-yellow-500/10 px-2 py-0.5 rounded text-xs border border-yellow-500/20">
+                            <span className="inline-flex items-center space-x-1 text-yellow-500 dark:text-yellow-400 bg-yellow-500/10 px-2 py-0.5 rounded text-xs border border-yellow-500/20">
                               <Clock className="h-3 w-3 animate-spin" />
                               <span>Running</span>
                             </span>
                           )}
                         </td>
-                        <td className="p-4 text-center text-zinc-300 font-mono">
+                        <td className="p-4 text-center text-slate-700 dark:text-zinc-300 font-mono">
                           {log.filesScanned}
                         </td>
                         <td className="p-4 text-center">
                           {log.vulnerabilitiesFound > 0 ? (
-                            <span className="font-semibold font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20">
+                            <span className="font-semibold font-mono text-red-500 dark:text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20">
                               {log.vulnerabilitiesFound} found
                             </span>
                           ) : log.status === 'complete' ? (
-                            <span className="text-emerald-400 font-medium">Clean</span>
+                            <span className="text-emerald-500 dark:text-emerald-400 font-medium">Clean</span>
                           ) : (
-                            <span className="text-zinc-500 font-mono">-</span>
+                            <span className="text-slate-400 dark:text-zinc-500 font-mono">-</span>
                           )}
                         </td>
                         <td className="p-4 text-right">
@@ -164,7 +164,7 @@ const ScanHistory = () => {
                             {log.status === 'complete' && log.repositoryId && (
                               <Link 
                                 to={`/results/${log.repositoryId._id}`} 
-                                className="inline-flex items-center space-x-1 text-indigo-400 hover:text-indigo-300 text-xs font-semibold"
+                                className="inline-flex items-center space-x-1 text-indigo-500 dark:text-indigo-400 hover:text-indigo-400 dark:hover:text-indigo-300 text-xs font-semibold"
                               >
                                 <span>Report</span>
                                 <ArrowRight className="h-3 w-3" />
@@ -172,7 +172,7 @@ const ScanHistory = () => {
                             )}
                             <button 
                               onClick={() => handleDeleteHistory(log._id)}
-                              className="text-zinc-500 hover:text-red-400 p-1 rounded hover:bg-zinc-800 transition-all"
+                              className="text-slate-400 dark:text-zinc-500 hover:text-red-500 dark:hover:text-red-400 p-1 rounded hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>

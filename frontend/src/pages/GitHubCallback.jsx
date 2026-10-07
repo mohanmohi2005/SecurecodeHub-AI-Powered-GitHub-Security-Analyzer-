@@ -50,13 +50,13 @@ const GitHubCallback = () => {
   }, [searchParams, navigate, user]);
 
   return (
-    <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-dark-card border border-dark-border rounded-xl p-8 text-center shadow-2xl">
+    <div className="min-h-screen bg-light-bg dark:bg-dark-bg flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border rounded-xl p-8 text-center shadow-2xl">
         {status === 'processing' && (
           <div className="flex flex-col items-center space-y-4">
             <Loader2 className="h-12 w-12 text-indigo-500 animate-spin" />
-            <h2 className="text-xl font-semibold text-white">Connecting to GitHub...</h2>
-            <p className="text-zinc-400 text-sm">Please wait while we secure your connection.</p>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Connecting to GitHub...</h2>
+            <p className="text-slate-500 dark:text-zinc-400 text-sm">Please wait while we secure your connection.</p>
           </div>
         )}
         
@@ -65,8 +65,8 @@ const GitHubCallback = () => {
             <div className="h-16 w-16 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/20">
               <CheckCircle className="h-8 w-8 text-emerald-500" />
             </div>
-            <h2 className="text-xl font-semibold text-white">Successfully Connected!</h2>
-            <p className="text-zinc-400 text-sm">Redirecting you back to the scanner...</p>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Successfully Connected!</h2>
+            <p className="text-slate-500 dark:text-zinc-400 text-sm">Redirecting you back to the scanner...</p>
           </div>
         )}
 
@@ -75,11 +75,11 @@ const GitHubCallback = () => {
             <div className="h-16 w-16 bg-red-500/10 rounded-full flex items-center justify-center border border-red-500/20">
               <XCircle className="h-8 w-8 text-red-500" />
             </div>
-            <h2 className="text-xl font-semibold text-white">Connection Failed</h2>
-            <p className="text-red-400 text-sm">{errorMsg}</p>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Connection Failed</h2>
+            <p className="text-red-500 dark:text-red-400 text-sm">{errorMsg}</p>
             <button 
               onClick={() => navigate('/scan')}
-              className="mt-4 px-6 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors"
+              className="mt-4 px-6 py-2 bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-900 dark:text-white rounded-lg transition-colors"
             >
               Return to App
             </button>
